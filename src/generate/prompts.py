@@ -55,3 +55,16 @@ Candidate profile:
 Target job:
 {job_text}
 """
+EXPLAIN_MATCH_PROMPT = """You help a student understand why jobs fit them.
+The student wants to be a: {role}
+
+Jobs (with the skills they already have and the skills they lack):
+{listing}
+
+For each job, write 1-2 short sentences in simple words saying why it fits
+and what to learn next.
+Rules:
+- Use only the matched and missing skills given above. Do not add new facts.
+- Keep the same order as the jobs.
+Return ONLY a JSON list of strings, one string per job.
+"""
