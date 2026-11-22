@@ -18,6 +18,7 @@ Features
 Technologies Used
 
 - Python
+- Gemini
 - LangChain
 - Streamlit
 - FAISS
@@ -30,12 +31,14 @@ Installation
 
 1. Clone this repository.
 2. Create a virtual environment.
+       python -m venv venv
 3. Install the required packages:
-
-pip install -r requirements.txt
+       pip install -r requirements.txt
 
 4. Create a ".env" file using ".env.example".
 5. Add your API key to ".env".
+6. How to run
+        python test_parser.py
 
 Dataset
 
