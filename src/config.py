@@ -5,7 +5,9 @@ load_dotenv()
 
 API_KEY = os.getenv("LLM_API_KEY")
 
-LLM_MODEL = "gemini-3.8-flash"
+LLM_MODEL = "gemini-3.5-flash"
+
+FALLBACK_MODEL = "gemini-3.5-flash-lite"
 
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
