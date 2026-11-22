@@ -231,3 +231,5 @@ __marimo__/
 !data/jobs/
 !data/jobs/jobs.csv
 /data/jobs.csv (2).zip
+data/jobs/
+vectorstore/*.pkl

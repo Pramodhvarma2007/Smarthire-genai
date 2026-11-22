@@ -16,3 +16,11 @@ TOP_N = 5
 JOBS_PATH = "data/jobs/jobs.csv"
 
 INDEX_PATH = "vectorstore/jobs.faiss"
+
+JOB_TITLE_COL = "Job_Title"
+
+JOB_SKILLS_COL = "Skills_Required"
+
+SAMPLE_SIZE = 5000
+
+META_PATH = "vectorstore/jobs_meta.pkl"

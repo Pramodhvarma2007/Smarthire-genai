@@ -1,16 +1,16 @@
 # Resume Parser: Test Notes
 
 **Model:** gemini-3.5-flash (with JSON mode and Pydantic validation)
-**Test date:** 22 Nov 2026
+**Test date:** 27 OCT 2026
 **Resumes tested:** 4
-
-## Results
 
 | Resume | Name | Skills | Experience | Education | Target role | Verdict |
 |---|---|---|---|---|---|---|
 | resume1_data_analyst | Ananya Reddy | 9 skills | 1 internship | B.Tech CS | Data Analyst | Good |
 | resume2_ml_engineer | Rahul Verma | 10 skills | 1 internship | B.E. CS | Machine Learning Engineer | Good |
-| resume3_web_developer | Sneha Kulkarni | 10 skills | 1 internship | B.Sc CS | Full Stack Developer | Good |
+| resume3_web_deve
+## Results
+loper | Sneha Kulkarni | 10 skills | 1 internship | B.Sc CS | Full Stack Developer | Good |
 | resume4_fresher_mixed | Kiran Patel | 7 skills | Empty | B.Tech IT | "Data and Software" | Needs work |
 
 ## What worked
