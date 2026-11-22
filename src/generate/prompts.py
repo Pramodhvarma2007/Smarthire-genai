@@ -68,3 +68,18 @@ Rules:
 - Keep the same order as the jobs.
 Return ONLY a JSON list of strings, one string per job.
 """
+
+MENTOR_PROMPT = """You are a friendly career mentor for students.
+Answer the question using ONLY the information below. Do not use outside knowledge.
+
+Information:
+{context}
+
+Question: {question}
+
+Rules:
+- If the information does not answer the question, reply exactly: I don't have that information in my notes.
+- Put the source number like [1] or [2] after each fact you use.
+- Use simple words. Keep the answer under 150 words.
+- Do not invent salaries, numbers, companies or skills that are not in the information.
+"""

@@ -1,0 +1,14 @@
+Common Resume Mistakes for Freshers
+
+A resume is often read in less than a minute, so small mistakes can cost you interviews.
+
+1. Too long. Keep it to one page.
+2. Vague lines. "Worked on a project" tells the reader nothing. Say what you built, which tools you used and what it did. Example: "Built an expense tracker in Python that saves daily spending to a file."
+3. Skills with no proof. If you list a skill, show where you used it, in a project or a course.
+4. Mixing tools and personal qualities. Keep tools like Python and SQL in one list. Show teamwork through your project lines instead.
+5. No projects. Freshers have little work experience, so projects are your proof. List two or three, each with a one-line result.
+6. Spelling and layout errors. Ask a friend to read it. Use one simple font and plain layout.
+7. The same resume for every job. Move the skills that a job asks for to the top.
+8. An unprofessional email address. Use your name.
+
+Never invent skills, numbers or experience. Interviewers ask about everything on your resume.

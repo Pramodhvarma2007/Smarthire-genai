@@ -1,0 +1,25 @@
+How to become a Data Analyst
+
+# How to Become a Data Analyst: A Student Guide
+
+A data analyst helps organizations make smart decisions by looking at information and finding useful patterns. If you like solving puzzles and working with numbers, this is a great career choice. Here is a simple, step-by-step path to get started while you are still a student.
+
+### Step 1: Start with Spreadsheets
+Begin your journey by mastering basic spreadsheet software. Learn how to organize raw data, write essential formulas, create simple charts, and use summary tables. Spreadsheets teach you the basics of data organization and quick calculations.
+
+### Step 2: Learn SQL
+SQL is the main language used to talk to databases. Since most organizational data lives in databases, learning SQL is very important. Practice how to ask questions to a database, filter specific information, sort results, and combine data from different tables.
+
+### Step 3: Pick a Coding Language
+Next, learn a beginner-friendly programming language like Python or R. Focus on tools within these languages designed to clean messy data, analyze trends, and automate repetitive work. Python is often the easiest option for students to learn first.
+
+### Step 4: Learn Data Visualization
+Data analysts must share their results clearly. Learn to use business intelligence tools that create charts and interactive dashboards. Focus on how to turn complex numbers into simple pictures that tell a clear story to people who are not technical.
+
+### Step 5: Practice on Real Datasets
+Put your skills together by working on real-world projects. Find free datasets online about topics you enjoy, such as sports, movies, or climate. Clean the data, look for interesting patterns, and build a report. Save your best work online in a portfolio to show future employers what you can do.
+
+### Step 6: Create Your Resume and Apply
+Build a clean resume that highlights your technical skills and links to your project portfolio. Start applying for entry-level roles or internships. During interviews, practice explaining your projects clearly and show how your work helps solve real problems.
+
+Becoming a data analyst takes regular practice. Follow these steps in order, build a strong portfolio, and keep learning!

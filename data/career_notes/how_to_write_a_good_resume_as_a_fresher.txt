@@ -1,0 +1,28 @@
+How to write a good resume as a fresher
+
+# How to Write a Resume as a Fresher
+
+Starting your career can feel tricky without work experience. However, a great fresher resume focuses on your potential, practical skills, and eagerness to learn. Follow this guide to build a clear and effective first resume.
+
+### Suggested Layout Order
+Organize your document in this logical order:
+1. **Contact Info:** Name, phone number, professional email address, and portfolio links.
+2. **Career Objective:** A short summary of your goals and top strengths.
+3. **Education:** Your degree, school, graduation year, and top scores.
+4. **Key Projects:** Academic, personal, or group projects.
+5. **Skills:** Technical abilities, digital tools, and soft skills.
+6. **Extras:** Certifications, languages, and volunteer work.
+
+### Practical Steps
+* **Highlight Your Projects:** Since you lack job experience, your projects are your best proof of skill. Explain what you created, the tools you used, and the problem you solved. Use clear action verbs like *built*, *designed*, or *organized*.
+* **Group Your Skills:** Divide your skills into distinct categories like technical skills, soft skills, and tools. This makes your resume easy for readers to scan quickly.
+* **Keep It Single-Page:** Keep your content short and clean. Use standard margins, readable fonts, and simple bullet points. Your entire resume should fit on one page.
+
+### Key Tools to Learn
+Learning a few basic tools will improve both your resume formatting and your skill set:
+* **Formatting Tools:** Master basic document editors and standard visual design platforms to create clean, organized templates.
+* **Project Hosting Tools:** If you are entering tech or creative fields, learn to use online code repositories or digital portfolio sites to display real work samples.
+* **Office Tools:** Gain confidence in spreadsheets, presentation software, and basic writing tools.
+
+### Final Review
+Check your text carefully for spelling and grammar errors. Ask a teacher, mentor, or friend to read your work. Finally, always save and send your final document in PDF format so the layout looks correct on every screen.

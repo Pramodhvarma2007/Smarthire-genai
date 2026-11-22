@@ -1,0 +1,33 @@
+Skills roadmap for software freshers
+
+**Skills Roadmap for Software Freshers**
+
+Starting a software career can feel overwhelming. Follow this simple step-by-step roadmap to build the right skills in the right order.
+
+### 1. Master the Fundamentals
+Begin with one core programming language, such as Python, Java, or C++. Focus on basic concepts like loops, functions, and object-oriented design. After that, practice Data Structures and Algorithms. This builds the strong problem-solving logic needed for coding interviews and daily work.
+
+### 2. Learn Version Control
+Next, learn how to manage and share your code effectively.
+* **Tools to learn:** Git and GitHub.
+* **Practical step:** Learn basic commands like clone, commit, push, pull, and branch. Upload all your code to an online portfolio to track your learning journey.
+
+### 3. Web and Database Basics
+Every developer needs to understand how applications handle data and display content.
+* **Frontend:** Learn HTML, CSS, and basic JavaScript to build web pages.
+* **Databases:** Learn SQL to create, read, update, and delete data using tools like MySQL or PostgreSQL.
+* **APIs:** Understand how the backend and frontend talk to each other using REST APIs.
+
+### 4. Pick a Specialization
+Once your basics are solid, choose one main area to focus on.
+* **Frontend Path:** Learn a modern library like React.
+* **Backend Path:** Master frameworks like Node.js or Python Django.
+* **Developer Tools:** Learn basic Linux terminal commands and the basics of Docker to run applications smoothly.
+
+### 5. Build Projects and Soft Skills
+Theory alone will not land a job; practical work is key.
+* **Practical step:** Build two or three real projects, such as a task tracker, a weather app, or a simple blog system.
+* **Documentation:** Write clear instructions in a README file for every project so others can test your code easily.
+* **Soft Skills:** Practice clear writing, active listening, and teamwork. Explaining your thought process clearly is just as important as writing good code.
+
+Follow this order step by step, stay consistent, and keep building real projects to stand out.

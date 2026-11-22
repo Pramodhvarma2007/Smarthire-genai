@@ -24,3 +24,8 @@ JOB_SKILLS_COL = "Skills_Required"
 SAMPLE_SIZE = 5000
 
 META_PATH = "vectorstore/jobs_meta.pkl"
+
+NOTES_DIR = "data/career_notes"
+NOTES_INDEX_PATH = "vectorstore/notes.faiss"
+NOTES_META_PATH = "vectorstore/notes_meta.pkl"
+MIN_SCORE = 0.30

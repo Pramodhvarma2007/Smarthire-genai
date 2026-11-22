@@ -1,0 +1,34 @@
+How to switch careers into tech
+
+# How to Switch Careers into Tech
+
+Switching your career into tech is achievable with a clear plan. You do not need a computer science degree to start. Follow this step-by-step guide to make your career transition smooth and successful.
+
+### Pick One Role
+First, choose a specific area that matches your interests. Avoid trying to learn everything at once. Pick one path from these beginner-friendly options:
+- **Web Development:** Create and build websites.
+- **Data Analysis:** Organize numbers to solve business problems.
+- **UX/UI Design:** Design easy-to-use app and website layouts.
+
+### Learn Essential Tools
+Next, learn the basic tools for your chosen path in this logical order:
+- **For Web Development:** Start with HTML and CSS to build page layouts. Next, learn JavaScript to add interactivity. Finally, learn Git to save and track your code changes.
+- **For Data Analysis:** Start with SQL to pull data from databases. Then learn Python to clean, analyze, and present that data.
+- **For Design:** Start with basic design principles like typography and spacing. Then learn wireframing and interactive prototyping tools.
+
+### Build Real Projects
+Watching tutorials is not enough. You must practice by creating real projects from scratch:
+- **Web Developers:** Build a personal portfolio website or a simple blog.
+- **Data Analysts:** Download a free public dataset and write a simple report on your findings.
+- **Designers:** Redesign a mobile app screen that is currently difficult to use.
+
+Save all your work in an online portfolio to show potential employers what you can actually do.
+
+### Network and Apply
+Finally, share your work and connect with others in the industry:
+- Join online coding groups and local tech meetups.
+- Post your learning progress regularly on professional social networks.
+- Ask experienced tech workers for feedback on your portfolio.
+- Start applying for entry-level roles, internships, or short freelance tasks.
+
+Be patient with yourself. Focus on small, daily progress, and you will steadily build the skills needed for your new tech career.

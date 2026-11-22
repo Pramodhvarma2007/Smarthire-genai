@@ -1,0 +1,39 @@
+How to prepare for technical interviews
+
+# Technical Interview Guide for Students
+
+Landing your first software role requires smart preparation. Follow this step-by-step roadmap to build confidence and pass your technical interviews.
+
+### Step 1: Pick One Language
+Choose one core programming language and stick with it. Python, Java, or C++ are great choices. Learn its basic syntax, built-in features, and memory management. Knowing one language deeply is much better than knowing five casually.
+
+### Step 2: Master Core Concepts
+Study data structures and algorithms thoroughly. Focus on:
+* **Data Structures:** Arrays, strings, linked lists, stacks, queues, trees, and hash maps.
+* **Algorithms:** Sorting, binary search, recursion, and dynamic programming.
+* **Efficiency:** Learn Big-O notation to measure code speed and memory usage.
+
+### Step 3: Use Essential Tools
+Get comfortable using basic developer tools daily:
+* **Code Editors:** Learn to write and debug code quickly in a dedicated editor.
+* **Version Control:** Use Git to manage your code history and share your projects.
+* **Command Line:** Learn basic terminal commands to run and test programs.
+
+### Step 4: Solve Coding Problems
+Start solving coding puzzles every day on online practice sites. Begin with easy problems, then move to medium ones. Focus on finding patterns rather than memorizing answers. Always write clean, readable code.
+
+### Step 5: Learn System Design Basics
+Understand how modern software works behind the scenes. Study basic web concepts like client-server systems, databases, web requests, and APIs. Practice drawing simple diagrams to explain how data flows through an app.
+
+### Step 6: Hold Mock Interviews
+Interviews test your communication skills as much as your code. Practice solving problems while speaking out loud. Explain your plan before typing. Ask a classmate to interview you, or record yourself giving a solution.
+
+### Suggested Preparation Order
+1. Pick and master your main language.
+2. Learn core data structures and algorithms.
+3. Practice coding puzzles daily.
+4. Master developer tools and build projects.
+5. Study basic system design concepts.
+6. Practice mock interviews out loud.
+
+Start early, keep practicing every day, and take it one step at a time!

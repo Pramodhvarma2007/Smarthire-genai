@@ -1,0 +1,21 @@
+How to Learn a New Skill in 30 Days
+
+A clear plan keeps you from jumping between videos without finishing anything.
+
+Week 1: Learn the basics.
+Pick one course or one guide and finish it. Do not start a second one yet. Practice for one to two hours every day.
+
+Week 2: Practice with small exercises.
+Solve simple problems on your own. Write what you got wrong and fix it.
+
+Week 3: Build one small project.
+Use the skill to make something real, such as a budget sheet, a small website or a data report. A finished small project is better than a half-finished big one.
+
+Week 4: Show your work.
+Clean up the project, upload it to GitHub with a short description, and add a line about it to your resume.
+
+Tips:
+- Study at the same time each day.
+- Use one learning source at a time.
+- Keep a notes file of what you learned.
+- Ask a friend or a teacher to look at your project and give feedback.
