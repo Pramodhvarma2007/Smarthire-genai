@@ -158,6 +158,10 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+data/
+*.faiss
+*.pkl
+__pycache__/
 
 # Conda environments
 conda-meta/
@@ -221,3 +225,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Allow job dataset
+!data/
+!data/jobs/
+!data/jobs/jobs.csv
+/data/jobs.csv (2).zip
