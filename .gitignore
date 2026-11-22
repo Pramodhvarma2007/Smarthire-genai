@@ -233,3 +233,4 @@ __marimo__/
 /data/jobs.csv (2).zip
 data/jobs/
 vectorstore/*.pkl
+vectorstore/llm_cache.json

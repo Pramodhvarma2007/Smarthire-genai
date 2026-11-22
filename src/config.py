@@ -29,3 +29,6 @@ NOTES_DIR = "data/career_notes"
 NOTES_INDEX_PATH = "vectorstore/notes.faiss"
 NOTES_META_PATH = "vectorstore/notes_meta.pkl"
 MIN_SCORE = 0.30
+
+NOTE_MIN_SCORE = 0.30
+JOB_MIN_SCORE = 0.45

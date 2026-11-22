@@ -6,11 +6,12 @@ from langchain_core.documents import Document
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableLambda
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from src.config import NOTES_DIR, NOTES_INDEX_PATH, NOTES_META_PATH, MIN_SCORE
+from src.config import NOTES_DIR, NOTES_INDEX_PATH, NOTES_META_PATH, NOTE_MIN_SCORE, JOB_MIN_SCORE
 from src.generate.prompts import MENTOR_PROMPT
 from src.llm import call_llm
 from src.search.embed import embed_texts
 from src.search.job_search import search_jobs
+from src.safety.guardrails import check_input
 
 NO_ANSWER = ("I don't have information about that in my career notes or job "
              "data. Try asking about career paths, skills, resumes, "
@@ -54,13 +55,13 @@ def search_notes(question, top_n=3):
 def retrieve(question, n_notes=3, n_jobs=3):
     parts, sources = [], []
     for doc, score in search_notes(question, n_notes):
-        if score >= MIN_SCORE:
+        if score >= NOTE_MIN_SCORE:
             n = len(sources) + 1
             parts.append(f"[{n}] Career note ({doc.metadata['source']}): {doc.page_content}")
             sources.append({"label": n, "type": "note",
                             "title": doc.metadata["source"], "score": round(score, 3)})
     for job in search_jobs(question, top_n=n_jobs):
-        if job["score"] >= MIN_SCORE:
+        if job["score"] >= JOB_MIN_SCORE:
             n = len(sources) + 1
             title = f"{job['Job_Title']} at {job['Company']}"
             parts.append(f"[{n}] Job ({title}): skills {job['Skills_Required']}; "
@@ -75,9 +76,36 @@ prompt = PromptTemplate.from_template(MENTOR_PROMPT)
 chain = prompt | RunnableLambda(lambda p: call_llm(p.to_string(), temperature=0.2))
 
 
-def ask_mentor(question):
-    found = retrieve(question)
+def format_history(history, turns=3):
+    if not history:
+        return "None"
+    lines = []
+    for m in history[-2 * turns:]:
+        who = "Student" if m["role"] == "user" else "Mentor"
+        lines.append(f"{who}: {m['text'][:300]}")
+    return "\n".join(lines)
+
+
+def make_search_text(question, history):
+    """Short follow-ups like 'what skills do I need for it?' borrow the last question."""
+    if history and len(question.split()) <= 6:
+        earlier = [m["text"] for m in history if m["role"] == "user"]
+        if earlier:
+            return earlier[-1] + " " + question
+    return question
+
+
+def ask_mentor(question, history=None):
+    check = check_input(question)
+    if not check["ok"]:
+        return {"answer": check["message"], "sources": [], "blocked": check["reason"]}
+    question = check["clean_text"]
+
+    found = retrieve(make_search_text(question, history))
     if not found["sources"]:
         return {"answer": NO_ANSWER, "sources": []}
-    text = chain.invoke({"question": question, "context": found["context"]})
-    return {"answer": text.strip(), "sources": found["sources"]}
+    text = chain.invoke({"question": question, "context": found["context"],
+                         "history": format_history(history)}).strip()
+    if text.lower().startswith("i don't have that information"):
+        return {"answer": text, "sources": []}
+    return {"answer": text, "sources": found["sources"]}
