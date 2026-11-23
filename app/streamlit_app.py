@@ -45,6 +45,8 @@ def analyze(uploaded):
     try:
         with st.spinner("Reading your resume..."):
             profile = parse_resume(load_resume(path))
+            if not (profile.skills or profile.experience or profile.education or profile.projects):
+                raise ValueError("This file does not look like a resume. Please upload your resume.")
         with st.spinner("Finding jobs for you..."):
             jobs = explain_matches(profile, match_jobs(profile))
         st.session_state.profile = profile

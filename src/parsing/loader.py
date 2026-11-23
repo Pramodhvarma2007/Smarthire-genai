@@ -32,5 +32,5 @@ def load_resume(path):
 
     text = text.strip()
     if len(text) < 50:
-        raise ValueError("Could not read text from this file")
+        raise ValueError("No readable text found. Please upload a PDF with selectable text, not a scanned image.")
     return fix_joined_email(text)
