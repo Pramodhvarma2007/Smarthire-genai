@@ -17,12 +17,12 @@
 | 7 | The other 3 sample resumes in the app | Analyzed without errors | Worked | Pass |
 | 8 | A .docx resume | Analyzed without errors | Worked | Pass |
 | 9 | A PDF that is not a resume | A clear message, no crash | The app showed a red message, "Could not read text from this file", and kept running | Pass (wording can be clearer) |
-| 10 | Click Analyze twice with the same file | Second run is fast | Could not tell by eye | Not confirmed |
+| 10 | Analyze the same resume twice | Second run is fast | New text: Run 1 took 41.47 seconds (asked the AI model), Run 2 took 0.00 seconds (saved answer). | Pass |
 | 11 | Clear chat button | Chat is emptied | Worked | Pass |
 | 12 | Follow-up question sent as a separate message | Mentor remembers the earlier question | First run: not remembered. After the fix: "What skills do I need for it?" was understood as being about Data Analyst, and the answer listed data analyst skills. | Fixed |
 | 13 | Analyze button with no file uploaded | Button is greyed out | Greyed out | Pass |
 
-**Summary of 13 checks: 8 passed, 2 fixed after a bug, 1 partly OK, 1 not confirmed, 1 failed.**
+**Summary of 13 checks: 9 passed, 2 fixed after a bug, 1 partly OK, 1 failed.**
 
 ## Bugs fixed today
 1. **Name and email wrong.** The PDF text glues the last name to the email ("Reddyananya.reddy@example.com"), and the email-hiding step took "Reddy" as part of the email. Fixed by putting the space back when the resume is read.
@@ -35,7 +35,6 @@
 2. **Search results are narrow.** For each role, all 5 jobs had the same title (for example 5 Frontend Developer jobs), so a Full Stack or Backend job never shows. Planned for the better-search work.
 3. **Resume tips do not always follow the three-part format.** Not re-tested yet.
 4. **Not a resume, but readable text.** The test PDF had no readable text and was stopped. A PDF with readable text that is not a resume has not been tested and could produce an empty or odd profile.
-5. **Saved answers on a second Analyze not measured.** Check 10 needs a timer instead of my eye.
 
 ## Fixes planned
 1. Memory: borrow the earlier question when the new one contains words like it, that, this, them or there, or starts with "what about" or "tell me more". Ignore earlier messages that were blocked.
