@@ -1,5 +1,22 @@
+import re
 from pypdf import PdfReader
 from docx import Document
+
+_EMAIL = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
+
+
+def fix_joined_email(text):
+    """Some PDFs glue the last word of the name to the email. Put the space back."""
+    def fix(m):
+        email = m.group(0)
+        local, domain = email.split("@", 1)
+        if "." in local and local[0].isupper():
+            head, tail = local.rsplit(".", 1)
+            if len(head) > len(tail) and head.lower().startswith(tail.lower()):
+                n = len(tail)
+                return local[:n] + " " + local[n:] + "@" + domain
+        return email
+    return _EMAIL.sub(fix, text)
 
 
 def load_resume(path):
@@ -16,4 +33,4 @@ def load_resume(path):
     text = text.strip()
     if len(text) < 50:
         raise ValueError("Could not read text from this file")
-    return text
+    return fix_joined_email(text)

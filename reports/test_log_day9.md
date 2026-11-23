@@ -23,8 +23,8 @@
 - Unsafe and unrelated questions are still handled correctly in the real app (checks 5 and 6).
 
 ## Bugs and problems found
-1. **Name and email are wrong on the Profile tab.** The surname "Reddy" was lost from the name and added to the front of the email. This did not happen on Day 2, so it came from the Day 7 change that hides emails before the AI reads the resume. My best guess is that the PDF text has the surname joined directly to the email, so the hiding rule treated "Reddy" as part of the email. I have not confirmed this yet.
-2. **Role change may not change the jobs enough.** A Data Analyst job was still offered after the role was set to Web Developer. A likely reason is that no job in the data is titled exactly "Web Developer", so web jobs get only a partial title bonus and the candidate's high skill match for analyst jobs wins. This is not confirmed yet.
+1. **Name and email wrong on the Profile tab (cause confirmed, fixed).** The PDF text glues the last name to the email ("Reddyananya.reddy@example.com"), and the email-hiding rule took "Reddy" as part of the email. Fixed by putting the space back when the resume is read.
+2. **Role change gave unrelated jobs (cause confirmed, fixed).** Setting the role to Web Developer returned Data Analyst and Data Scientist jobs, because skill match outweighed the role. Fixed by choosing the 30 closest jobs for the role first, then ranking by skills.
 3. **A Lead job (10+ years) is offered to a fresher.** The problem noted on Day 5 is still open. The AI model itself pointed it out in the tips.
 4. **Resume tips do not always follow the fixed format.** This may be because a different model in the chain answered, or because the role mismatch confused it. Not confirmed.
 5. **Memory is not proven yet.** I asked both questions in one message, so this did not test whether the mentor remembers an earlier message.
