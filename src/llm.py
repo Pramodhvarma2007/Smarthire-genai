@@ -4,7 +4,7 @@ import os
 import time
 from google import genai
 from google.genai import types
-from src.config import API_KEY, LLM_MODEL, FALLBACK_MODEL
+from src.config import API_KEY, MODEL_CHAIN
 
 client = genai.Client(api_key=API_KEY)
 CACHE_PATH = "vectorstore/llm_cache.json"
@@ -37,7 +37,7 @@ def call_llm(prompt, json_mode=False, temperature=0.3, use_cache=True):
         temperature=temperature,
         response_mime_type="application/json" if json_mode else "text/plain",
     )
-    for model in (LLM_MODEL, FALLBACK_MODEL):
+    for model in MODEL_CHAIN:
         for attempt in range(3):
             try:
                 r = client.models.generate_content(
@@ -47,7 +47,7 @@ def call_llm(prompt, json_mode=False, temperature=0.3, use_cache=True):
                 return r.text
             except Exception as e:
                 msg = str(e)
-                if "429" in msg or "RESOURCE_EXHAUSTED" in msg:
+                if any(w in msg for w in ("429", "RESOURCE_EXHAUSTED", "404", "NOT_FOUND")):
                     print(f"[limit] {model} limit reached, trying next model")
                     break  # no point retrying a used-up limit
                 print(f"[retry] {model} attempt {attempt + 1}: {msg[:120]}")

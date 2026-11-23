@@ -32,3 +32,5 @@ MIN_SCORE = 0.30
 
 NOTE_MIN_SCORE = 0.30
 JOB_MIN_SCORE = 0.45
+
+MODEL_CHAIN = [LLM_MODEL, FALLBACK_MODEL, "gemini-3.7-flash", "gemini-3.1-flash-lite"]
