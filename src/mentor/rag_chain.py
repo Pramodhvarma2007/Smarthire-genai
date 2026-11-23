@@ -52,7 +52,7 @@ def search_notes(question, top_n=3):
     return [(_docs[int(i)], float(s)) for s, i in zip(scores[0], ids[0])]
 
 
-def retrieve(question, n_notes=3, n_jobs=3):
+def retrieve(question, n_notes=3, n_jobs=5):
     parts, sources = [], []
     for doc, score in search_notes(question, n_notes):
         if score >= NOTE_MIN_SCORE:
@@ -87,8 +87,10 @@ def format_history(history, turns=3):
 
 
 def make_search_text(question, history):
-    """Short follow-ups like 'what skills do I need for it?' borrow the last question."""
-    if history and len(question.split()) <= 6:
+    """Short or vague follow-ups borrow the last question."""
+    words = question.lower().replace("?", "").split()
+    vague = {"it", "that", "this", "they", "them", "there", "those"}
+    if history and (len(words) <= 6 or vague & set(words)):
         earlier = [m["text"] for m in history if m["role"] == "user"]
         if earlier:
             return earlier[-1] + " " + question

@@ -88,4 +88,5 @@ Rules:
 - Start directly with the answer. No greeting.
 - Use simple words. Keep the answer under 150 words.
 - Do not invent salaries, numbers, companies or skills that are not in the information.
+-- If no job lists every skill the student asked for, show the closest jobs and say which of the asked skills each one lists.
 """

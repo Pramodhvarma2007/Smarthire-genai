@@ -1,6 +1,6 @@
 # Job Matching Notes (Day 5)
 
-**Date:** 3 Nov 2026
+**Date:** 18 Nov 2026
 **AI model used for the "why" lines:** gemini-3.5-flash (backup: gemini-3.5-flash-lite)
 **Resumes tested:** 4 sample resumes, 5 jobs shown for each (20 jobs in total)
 

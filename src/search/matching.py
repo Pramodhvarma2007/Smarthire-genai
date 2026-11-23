@@ -57,15 +57,30 @@ def skill_gap(my_skills, job_skills_text):
     pct = round(100 * len(matched) / len(job_skills)) if job_skills else 0
     return matched, missing, pct
 
-
 def match_jobs(profile, top_n=5, pool=15):
-    """Find 15 close jobs, then rank by meaning score plus skill overlap."""
+    """Search by the full profile AND by the wanted role, then rank."""
     my_skills = candidate_skills(profile)
-    results = search_jobs(make_query(profile), top_n=pool)
+    role = (profile.target_role or "").strip()
+
+    queries = [make_query(profile)]
+    if role:
+        queries.append(role)
+
+    seen, results = set(), []
+    for q in queries:
+        for r in search_jobs(q, top_n=pool):
+            key = r.get("Job_ID") or (r["Job_Title"], r["Company"])
+            if key not in seen:
+                seen.add(key)
+                results.append(r)
+
+    role_words = set(re.findall(r"[a-z]+", role.lower()))
     for r in results:
         matched, missing, pct = skill_gap(my_skills, r["Skills_Required"])
         r["matched"], r["missing"], r["skill_match"] = matched, missing, pct
-        r["final"] = round(0.5 * r["score"] + 0.5 * pct / 100, 3)
+        title_words = set(re.findall(r"[a-z]+", r["Job_Title"].lower()))
+        title_hit = len(role_words & title_words) / len(role_words) if role_words else 0
+        r["final"] = round(0.25 * r["score"] + 0.35 * pct / 100 + 0.40 * title_hit, 3)
     results.sort(key=lambda r: r["final"], reverse=True)
     return results[:top_n]
 

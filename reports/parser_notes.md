@@ -1,7 +1,7 @@
 # Resume Parser: Test Notes
 
 **Model:** gemini-3.5-flash (with JSON mode and Pydantic validation)
-**Test date:** 27 OCT 2026
+**Test date:** 17 NOV 2026
 **Resumes tested:** 4
 
 | Resume | Name | Skills | Experience | Education | Target role | Verdict |

@@ -1,6 +1,6 @@
 # Job Search Notes
 
-**Date:** 1 Nov 2026
+**Date:** 17 Nov 2026
 
 ## Setup
 - **Jobs used:** 5,000 job postings (Kaggle India tech jobs dataset)

@@ -1,6 +1,6 @@
 # Safety and Memory Notes (Day 7)
 
-**Date:** 07 Nov 2026
+**Date:** 18 Nov 2026
 **AI model used:** gemini-3.5-flash. Its daily limit ran out during testing, so the answers came from the backup model, gemini-3.5-flash-lite.
 
 ## What was added today

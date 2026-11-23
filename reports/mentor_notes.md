@@ -1,6 +1,6 @@
 # Mentor Notes (Day 6)
 
-**Date:** 5 Nov 2026
+**Date:** 18 Nov 2026
 **AI model used:** gemini-3.5-flash (backup: gemini-3.5-flash-lite)
 **Closeness cut-off (MIN_SCORE):** 0.30
 **Sources the mentor can use:** career notes (written with AI help, then checked by me, plus extra notes such as "common resume mistakes for freshers") and the 5,000 job listings

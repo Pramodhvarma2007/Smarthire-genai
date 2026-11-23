@@ -1,7 +1,7 @@
 # Prompt Comparison: Before and After
 
 **Model:** gemini-3.5-flash (fallback: gemini-3.5-flash-lite)
-**Test date:** 30 OCT 2026
+**Test date:** 17 NOV 2026
 **Test resume:** resume4_fresher_mixed.pdf (Kiran Patel, B.Tech IT fresher)
 **Target job:** Data Analyst (SQL, Excel, Power BI, Python/Pandas, dashboards, communication)
 
