@@ -57,8 +57,17 @@ def skill_gap(my_skills, job_skills_text):
     pct = round(100 * len(matched) / len(job_skills)) if job_skills else 0
     return matched, missing, pct
 
-def match_jobs(profile, top_n=5, pool=30):
-    """Find jobs for the wanted role, then rank by role fit and skills you already have."""
+LEVEL_SCORE = {"fresher": 1.0, "junior": 0.8, "mid": 0.2, "senior": 0.0, "lead": 0.0}
+
+
+def level_score(level_text):
+    """Fresher and Junior jobs score highest, because this tool is for students."""
+    first = str(level_text).strip().lower().split(" ")[0]
+    return LEVEL_SCORE.get(first, 0.5)
+
+
+def match_jobs(profile, top_n=5, pool=50, level_boost=True):
+    """Find jobs for the wanted role, then rank by role fit, your skills and job level."""
     my_skills = candidate_skills(profile)
     role = (profile.target_role or "").strip()
     query = role if role else make_query(profile)
@@ -67,7 +76,11 @@ def match_jobs(profile, top_n=5, pool=30):
     for r in results:
         matched, missing, pct = skill_gap(my_skills, r["Skills_Required"])
         r["matched"], r["missing"], r["skill_match"] = matched, missing, pct
-        r["final"] = round(0.6 * r["score"] + 0.4 * pct / 100, 3)
+        if level_boost:
+            r["final"] = round(0.40 * r["score"] + 0.25 * pct / 100
+                               + 0.35 * level_score(r["Experience_Level"]), 3)
+        else:   # the Day 9 formula, kept so the test can compare
+            r["final"] = round(0.6 * r["score"] + 0.4 * pct / 100, 3)
     results.sort(key=lambda r: r["final"], reverse=True)
     return results[:top_n]
 

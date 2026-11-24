@@ -22,15 +22,19 @@ def meaning_only(profile):
     return search_jobs(make_query(profile), top_n=TOP)
 
 
-def current_system(profile):
+def day9_system(profile):
+    return match_jobs(profile, top_n=TOP, pool=30, level_boost=False)
+
+
+def day12_system(profile):
     return match_jobs(profile, top_n=TOP)
 
 
 METHODS = {
     "Meaning search only": meaning_only,
-    "Current system (role first, then skills)": current_system,
+    "Day 9 system (role first, then skills)": day9_system,
+    "Day 12 system (with level boost)": day12_system,
 }
-
 
 def run(out_path="reports/search_eval_results.md"):
     meta = pd.read_pickle(META_PATH)
