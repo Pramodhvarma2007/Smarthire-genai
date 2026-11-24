@@ -11,7 +11,7 @@ NUM = re.compile(r"\d+(?:\.\d+)?")
 HIDE = {"email", "name", "target_role"}
 
 
-def rewrite_resume(profile, job):
+def rewrite_resume(profile, job, fresh=False):
     """The AI rewrites wording only. Facts are kept by the code."""
     prompt = REWRITE_PROMPT.format(
         job_title=job["Job_Title"], level=job["Experience_Level"],
@@ -19,7 +19,7 @@ def rewrite_resume(profile, job):
         profile_json=profile.model_dump_json(indent=2, exclude=HIDE))
     data, last = None, None
     for attempt in range(2):
-        raw = call_llm(prompt, json_mode=True, temperature=0.2, use_cache=(attempt == 0))
+        raw = call_llm(prompt, json_mode=True, temperature=0.2,use_cache=(attempt == 0 and not fresh))
         try:
             data = json.loads(raw)
             break

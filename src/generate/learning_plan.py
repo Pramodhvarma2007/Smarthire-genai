@@ -4,9 +4,14 @@ from src.generate.prompts import PLAN_PROMPT_V2
 
 MAX_SKILLS = 6
 PROMISE = re.compile(r"\b(salary|guarantee[d]?|lpa)\b|[₹$]", re.I)
+LINK = re.compile(r"https?://\S+|www\.\S+", re.I)
 
 
-def make_plan(my_skills, job, hours=2, prompt=PLAN_PROMPT_V2):
+def remove_links(text):
+    return LINK.sub("", text)
+
+
+def make_plan(my_skills, job, hours=2, prompt=PLAN_PROMPT_V2, fresh=False):
     """my_skills: the student's skills. job: one job from match_jobs()."""
     missing = list(job["missing"])[:MAX_SKILLS]
     if not missing:
@@ -16,7 +21,8 @@ def make_plan(my_skills, job, hours=2, prompt=PLAN_PROMPT_V2):
     text = call_llm(prompt.format(
         job_title=job["Job_Title"], level=job["Experience_Level"],
         have=", ".join(my_skills) or "none listed",
-        missing=", ".join(missing), hours=hours), temperature=0.3)
+        missing=", ".join(missing), hours=hours),
+        temperature=0.3, use_cache=not fresh)
     return {"plan": text.strip(), "missing": missing, "used_ai": True}
 
 
