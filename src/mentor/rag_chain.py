@@ -9,6 +9,7 @@ from langchain_core.runnables import RunnableLambda
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from src.config import NOTES_DIR, NOTES_INDEX_PATH, NOTES_META_PATH, NOTE_MIN_SCORE, JOB_MIN_SCORE
 from src.generate.prompts import MENTOR_PROMPT
+from src.search.matching import same_skill, level_score
 from src.llm import call_llm
 from src.search.embed import embed_texts
 from src.search.job_search import search_jobs
@@ -53,6 +54,18 @@ def search_notes(question, top_n=3):
     return [(_docs[int(i)], float(s)) for s, i in zip(scores[0], ids[0])]
 
 
+def find_jobs(question, n_jobs=5):
+    """Jobs must pass the closeness check. Then skills named in the question and
+    student-friendly levels decide the order."""
+    close = [j for j in search_jobs(question, top_n=40) if j["score"] >= JOB_MIN_SCORE]
+    for j in close:
+        skills = [s.strip() for s in str(j["Skills_Required"]).split(",") if s.strip()]
+        named = sum(same_skill(s, question) for s in skills)
+        j["rank"] = j["score"] + 0.10 * min(named, 3) + 0.10 * level_score(j["Experience_Level"])
+    close.sort(key=lambda j: j["rank"], reverse=True)
+    return close[:n_jobs]
+
+
 def retrieve(question, n_notes=3, n_jobs=5):
     parts, sources = [], []
     for doc, score in search_notes(question, n_notes):
@@ -61,17 +74,14 @@ def retrieve(question, n_notes=3, n_jobs=5):
             parts.append(f"[{n}] Career note ({doc.metadata['source']}): {doc.page_content}")
             sources.append({"label": n, "type": "note",
                             "title": doc.metadata["source"], "score": round(score, 3)})
-    for job in search_jobs(question, top_n=n_jobs):
-        if job["score"] >= JOB_MIN_SCORE:
-            n = len(sources) + 1
-            title = f"{job['Job_Title']} at {job['Company']}"
-            parts.append(f"[{n}] Job ({title}): skills {job['Skills_Required']}; "
-                         f"level {job['Experience_Level']}; city {job['City']}; "
-                         f"industry {job['Industry']}")
-            sources.append({"label": n, "type": "job",
-                            "title": title, "score": job["score"]})
+    for job in find_jobs(question, n_jobs):
+        n = len(sources) + 1
+        title = f"{job['Job_Title']} at {job['Company']}"
+        parts.append(f"[{n}] Job ({title}): skills {job['Skills_Required']}; "
+                     f"level {job['Experience_Level']}; city {job['City']}; "
+                     f"industry {job['Industry']}")
+        sources.append({"label": n, "type": "job", "title": title, "score": job["score"]})
     return {"context": "\n\n".join(parts), "sources": sources}
-
 
 prompt = PromptTemplate.from_template(MENTOR_PROMPT)
 chain = prompt | RunnableLambda(lambda p: call_llm(p.to_string(), temperature=0.2))
