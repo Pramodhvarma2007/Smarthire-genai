@@ -50,6 +50,9 @@ def call_llm(prompt, json_mode=False, temperature=0.3, use_cache=True):
                 if any(w in msg for w in ("429", "RESOURCE_EXHAUSTED", "404", "NOT_FOUND")):
                     print(f"[limit] {model} limit reached, trying next model")
                     break  # no point retrying a used-up limit
+                if "503" in msg or "UNAVAILABLE" in msg:
+                    print(f"[busy] {model} is busy, trying next model")
+                    break
                 print(f"[retry] {model} attempt {attempt + 1}: {msg[:120]}")
                 time.sleep(2 * (attempt + 1))
     raise RuntimeError("The AI model is busy or its daily limit is used up. Try again later.")

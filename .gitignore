@@ -234,3 +234,4 @@ __marimo__/
 data/jobs/
 vectorstore/*.pkl
 vectorstore/llm_cache.json
+output/

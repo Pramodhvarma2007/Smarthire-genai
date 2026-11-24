@@ -122,3 +122,26 @@ Rules:
 - Do not promise a job, a salary or any result.
 - Put no more than two new skills in one week.
 """
+
+REWRITE_PROMPT = """You are a careful resume editor for a student.
+Rewrite the resume content below so it fits the target job. Change only the wording and the order. Never change facts.
+
+Target job: {job_title} ({level})
+Skills the job asks for: {job_skills}
+
+The student's resume content (this is the ONLY source of facts):
+{profile_json}
+
+Return ONLY valid JSON with exactly these keys:
+- "summary": 2 or 3 short sentences for the top of the resume.
+- "skills": the student's technical skills, the most useful for this job first. Use only skills from the "skills" list in the resume content.
+- "experience": a list with one entry per experience item, in the same order. Each entry is an object with one key, "bullets", holding 2 or 3 short bullet lines.
+- "projects": a list with one entry per project, in the same order. Each entry is an object with one key, "bullets", holding 1 or 2 short bullet lines.
+
+Rules:
+- Use only facts and numbers that are in the resume content. Do not invent any skill, tool, number, company, result or responsibility.
+- Do NOT mention a skill the student does not have, even if the job asks for it.
+- Start each bullet with an action verb and keep it under 25 words.
+- Use simple words. Do not use the word "I".
+- If an item has no details to work with, write one plain bullet that restates what is given.
+"""
