@@ -66,13 +66,13 @@ def level_score(level_text):
     return LEVEL_SCORE.get(first, 0.5)
 
 
-def match_jobs(profile, top_n=5, pool=50, level_boost=True):
+def match_jobs(profile, top_n=5, pool=50, level_boost=True, search_fn=search_jobs):
     """Find jobs for the wanted role, then rank by role fit, your skills and job level."""
     my_skills = candidate_skills(profile)
     role = (profile.target_role or "").strip()
     query = role if role else make_query(profile)
 
-    results = search_jobs(query, top_n=pool)
+    results = search_fn(query, top_n=pool)
     for r in results:
         matched, missing, pct = skill_gap(my_skills, r["Skills_Required"])
         r["matched"], r["missing"], r["skill_match"] = matched, missing, pct

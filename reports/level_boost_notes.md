@@ -1,6 +1,6 @@
 # Level Boost Notes (Day 12)
 
-**Date:** 24 Nov 2026
+**Date:** 21 Nov 2026
 **What was done:** added a job-level score to the job ranking, then ran the same 20 test profiles again
 **Cost:** no AI requests (local search only)
 

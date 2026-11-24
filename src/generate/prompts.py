@@ -82,11 +82,12 @@ Question: {question}
 
 Rules:
 - Career notes explain how to do things. Job listings show real jobs with their skills, level and city. Both count as information.
-- For a question about jobs, list the matching jobs with company, level, city and key skills.
-- If the information truly does not answer the question, reply exactly: I don't have that information in my notes.
+- First decide what the question mainly asks for. If the information contains it, answer from it, even when the wording is not an exact match. For example, jobs whose skills include the skills asked for, or the skills that job listings ask for in a role.
+- For a question about jobs, list the matching jobs with company, level, city and key skills. If no job lists every skill asked for, show the closest jobs and say which of the asked skills each one lists.
+- If part of the question is not covered, say so briefly at the end.
+- If the main thing asked for is not in the information at all (for example a salary, a law, a visa rule or a prediction), reply exactly: I don't have that information in my notes.
 - Put the source number like [1] after each fact you use.
 - Start directly with the answer. No greeting.
 - Use simple words. Keep the answer under 150 words.
 - Do not invent salaries, numbers, companies or skills that are not in the information.
--- If no job lists every skill the student asked for, show the closest jobs and say which of the asked skills each one lists.
 """

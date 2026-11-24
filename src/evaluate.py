@@ -4,6 +4,9 @@ from src.parsing.resume_parser import Profile
 from src.eval_profiles import PROFILES
 from src.search.job_search import search_jobs
 from src.search.matching import match_jobs, make_query, candidate_skills, skill_gap
+from src.search.hybrid import hybrid_search
+
+
 
 TOP = 5
 
@@ -29,11 +32,28 @@ def day9_system(profile):
 def day12_system(profile):
     return match_jobs(profile, top_n=TOP)
 
+def no_role(profile):
+    return profile.model_copy(update={"target_role": ""})
+
+
+def day12_skills_only(profile):
+    return match_jobs(no_role(profile), top_n=TOP)
+
+
+def hybrid_with_role(profile):
+    return match_jobs(profile, top_n=TOP, search_fn=hybrid_search)
+
+
+def hybrid_skills_only(profile):
+    return match_jobs(no_role(profile), top_n=TOP, search_fn=hybrid_search)
 
 METHODS = {
     "Meaning search only": meaning_only,
     "Day 9 system (role first, then skills)": day9_system,
     "Day 12 system (with level boost)": day12_system,
+    "Day 12 system, skills only (no role)": day12_skills_only,
+    "Hybrid system, role given": hybrid_with_role,
+    "Hybrid system, skills only (no role)": hybrid_skills_only,
 }
 
 def run(out_path="reports/search_eval_results.md"):
