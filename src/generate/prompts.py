@@ -91,3 +91,34 @@ Rules:
 - Use simple words. Keep the answer under 150 words.
 - Do not invent salaries, numbers, companies or skills that are not in the information.
 """
+
+PLAN_PROMPT_V1 = """Make a 30 day learning plan for a student to learn these skills: {missing}.
+"""
+
+PLAN_PROMPT_V2 = """You are a study coach for students who want a job.
+
+The student wants this job: {job_title} ({level})
+Skills they already have: {have}
+Skills they must learn (most important first): {missing}
+Time they can study: {hours} hours per day
+
+Write a 30-day learning plan in exactly this format:
+
+WEEK 1 (days 1-7): the skill or skills for this week
+- What to learn:
+- Daily practice:
+- Mini project:
+- How you know you are ready:
+
+WEEK 2 (days 8-14): ...
+WEEK 3 (days 15-21): ...
+WEEK 4 (days 22-30): finish the last skill, then build one small project that uses ALL the skills together and add it to the resume.
+
+Rules:
+- Teach only the skills listed under "Skills they must learn". Do not add other skills.
+- Build on the skills they already have where it helps.
+- Use simple words. Keep every line short.
+- Do not name websites, courses, books or channels, and give no web links.
+- Do not promise a job, a salary or any result.
+- Put no more than two new skills in one week.
+"""
