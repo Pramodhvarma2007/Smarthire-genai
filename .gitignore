@@ -235,3 +235,7 @@ data/jobs/
 vectorstore/*.pkl
 vectorstore/llm_cache.json
 output/
+!vectorstore/jobs.faiss
+!vectorstore/jobs_meta.pkl
+!vectorstore/notes.faiss
+!vectorstore/notes_meta.pkl

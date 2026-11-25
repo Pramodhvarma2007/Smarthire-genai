@@ -4,6 +4,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_KEY = os.getenv("LLM_API_KEY")
+if not API_KEY:   # on the online app the key comes from the app's Secrets box
+    try:
+        import streamlit as st
+        API_KEY = st.secrets["LLM_API_KEY"]
+    except Exception:
+        API_KEY = None
 
 LLM_MODEL = "gemini-3.5-flash"
 

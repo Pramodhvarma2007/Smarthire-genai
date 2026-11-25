@@ -14,6 +14,7 @@ from src.llm import call_llm
 from src.search.embed import embed_texts
 from src.search.job_search import search_jobs
 from src.safety.guardrails import check_input
+from src.search.hybrid import hybrid_search
 
 NO_ANSWER = ("I don't have information about that in my career notes or job "
              "data. Try asking about career paths, skills, resumes, "
@@ -54,16 +55,31 @@ def search_notes(question, top_n=3):
     return [(_docs[int(i)], float(s)) for s, i in zip(scores[0], ids[0])]
 
 
-def find_jobs(question, n_jobs=5):
-    """Jobs must pass the closeness check. Then skills named in the question and
-    student-friendly levels decide the order."""
-    close = [j for j in search_jobs(question, top_n=40) if j["score"] >= JOB_MIN_SCORE]
+def _words(text):
+    return set(re.findall(r"[a-z]+", str(text).lower()))
+
+
+def find_jobs(question, n_jobs=5, per_title=3):
+    """Combined search, then skills named in the question, title words and level decide the order.
+    At most `per_title` jobs share one title, so answers show some variety."""
+    q_words = _words(question)
+    close = [j for j in hybrid_search(question, top_n=60) if j["score"] >= JOB_MIN_SCORE]
     for j in close:
         skills = [s.strip() for s in str(j["Skills_Required"]).split(",") if s.strip()]
         named = sum(same_skill(s, question) for s in skills)
-        j["rank"] = j["score"] + 0.10 * min(named, 3) + 0.10 * level_score(j["Experience_Level"])
+        title_words = _words(j["Job_Title"])
+        overlap = len(title_words & q_words) / len(title_words) if title_words else 0
+        j["rank"] = (j["score"] + 0.10 * min(named, 3)
+                     + 0.10 * level_score(j["Experience_Level"]) + 0.10 * overlap)
     close.sort(key=lambda j: j["rank"], reverse=True)
-    return close[:n_jobs]
+    picked, seen = [], {}
+    for j in close:
+        if seen.get(j["Job_Title"], 0) < per_title:
+            picked.append(j)
+            seen[j["Job_Title"]] = seen.get(j["Job_Title"], 0) + 1
+        if len(picked) == n_jobs:
+            break
+    return picked
 
 
 def retrieve(question, n_notes=3, n_jobs=5):

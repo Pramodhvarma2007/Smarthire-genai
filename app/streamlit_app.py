@@ -58,11 +58,7 @@ def get_matches(profile):
     return explain_matches(profile, jobs)
 
 
-def analyze(uploaded):
-    suffix = os.path.splitext(uploaded.name)[1]
-    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-        tmp.write(uploaded.getbuffer())
-        path = tmp.name
+def run_analysis(path):
     try:
         with st.spinner("Reading your resume..."):
             profile = parse_resume(load_resume(path))
@@ -78,6 +74,15 @@ def analyze(uploaded):
         st.success("Done! Open the tabs on the right.")
     except Exception as e:
         st.error(f"Something went wrong: {friendly(e)}")
+
+
+def analyze(uploaded):
+    suffix = os.path.splitext(uploaded.name)[1]
+    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+        tmp.write(uploaded.getbuffer())
+        path = tmp.name
+    try:
+        run_analysis(path)
     finally:
         os.remove(path)
 
@@ -92,6 +97,8 @@ with st.sidebar:
                   "'Update jobs for this role' on the Profile tab.")
     if st.button("Analyze my resume", type="primary", disabled=uploaded is None):
         analyze(uploaded)
+    if st.button("Try a sample resume"):
+        run_analysis("data/resumes/resume1_data_analyst.pdf")
     st.info("Your email and phone number are hidden before anything is sent to the AI model.")
     with st.expander("About and limits"):
         st.markdown(

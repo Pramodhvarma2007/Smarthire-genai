@@ -90,6 +90,7 @@ Rules:
 - Start directly with the answer. No greeting.
 - Use simple words. Keep the answer under 150 words.
 - Do not invent salaries, numbers, companies or skills that are not in the information.
+- You are shown only a few jobs. Never say that no job with a certain title or skill exists. Say "among the jobs I found" instead.
 """
 
 PLAN_PROMPT_V1 = """Make a 30 day learning plan for a student to learn these skills: {missing}.
