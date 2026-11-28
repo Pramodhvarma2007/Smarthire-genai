@@ -19,14 +19,27 @@ def fix_joined_email(text):
     return _EMAIL.sub(fix, text)
 
 
+def docx_text(doc):
+    """Paragraphs first, then the text inside tables (two-column resumes keep their content there)."""
+    parts = [p.text for p in doc.paragraphs]
+    for table in doc.tables:
+        for row in table.rows:
+            seen = set()
+            for cell in row.cells:
+                if id(cell._tc) in seen:      # merged cells repeat, so read each one once
+                    continue
+                seen.add(id(cell._tc))
+                parts.append(cell.text)
+    return "\n".join(parts)
+
+
 def load_resume(path):
     path_lower = path.lower()
     if path_lower.endswith(".pdf"):
         reader = PdfReader(path)
         text = "\n".join(p.extract_text() or "" for p in reader.pages)
     elif path_lower.endswith(".docx"):
-        doc = Document(path)
-        text = "\n".join(p.text for p in doc.paragraphs)
+        text = docx_text(Document(path))
     else:
         raise ValueError("Only PDF or DOCX files are supported")
 
